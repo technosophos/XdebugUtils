@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+require 'TraceParser.php';
+require 'StackTraceForSymbol.php';
+
+if ($argv < 3) {
+  printf("Parses an XT file and prints stack traces for all occurances of the given symbol.
+
+\t\tUsage: %s symbol file.xt
+");
+ exit(1);
+}
+
+$symbol = $argv[1];
+$file = $argv[2];
+
+$collector = new StackTraceForSymbol($symbol);
+
+$parser = new TraceParser($file);
+$parser->register($collector);
+$parser->parse();
+
+$report = $collector->report();
+
+foreach ($report as $trace) {
+  print array_shift($trace) . PHP_EOL;
+  print implode(PHP_EOL . "\t", $trace);
+  print PHP_EOL;
+}
+?>
