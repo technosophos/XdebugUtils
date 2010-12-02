@@ -16,7 +16,8 @@ class StackTraceForSymbol implements TraceParserObserver {
   
   protected $traces;
   
-  protected $trace_msg_format = '%s in %s (%d) Time: %0.4f, Size: %d';
+  protected $user_format = '%d. %s [ %s:%d ] Time: %0.4f, Size: %d';
+  protected $internal_format = '%d. %s [ BUILT-IN ] Time: %0.4f, Size: %d';
   
   public function __construct($symbol) {
     $this->watch_for_symbol = $symbol;
@@ -31,10 +32,17 @@ class StackTraceForSymbol implements TraceParserObserver {
     unset($this->stack);
   }
   
-  public function enterFunction($function_id, $depth, $elapsed_time, $memory_consumption, $function_name, $is_internal, $filename, $line, $included_from = NULL) {
+  public function enterFunction($depth, $function_id, $elapsed_time, $memory_consumption, $function_name, $is_internal, $filename, $line, $included_from = NULL) {
     
-    $this->stack[$depth] = sprintf($this->trace_msg_format, 
-      $function_name, $filename, $line, $elapsed_time, $memory_consumtion);
+    if ($is_internal) {
+      $this->stack[$depth] = sprintf($this->internal_format, 
+        $depth, $function_name, $elapsed_time, $memory_consumption);
+    }
+    else {
+      $this->stack[$depth] = sprintf($this->user_format, 
+        $depth, $function_name, $filename, $line, $elapsed_time, $memory_consumption);
+    }
+    
     
     if ($function_name == $this->watch_for_symbol) {
       $trace = array_slice($this->stack, 0, $depth);
@@ -43,7 +51,7 @@ class StackTraceForSymbol implements TraceParserObserver {
     
   }
   
-  public function exitFunction($function_id, $depth, $elapsed_time, $memory_consumption) {
+  public function exitFunction($depth, $function_id, $elapsed_time, $memory_consumption) {
     // Waste of resources.
     //unset($this->stack[$depth])
   }

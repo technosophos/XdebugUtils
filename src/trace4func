@@ -3,11 +3,11 @@
 require 'TraceParser.php';
 require 'StackTraceForSymbol.php';
 
-if ($argv < 3) {
+if (count($argv) < 3) {
   printf("Parses an XT file and prints stack traces for all occurances of the given symbol.
 
-\t\tUsage: %s symbol file.xt
-");
+\tUsage: %s symbol file.xt
+\n", $argv[0]);
  exit(1);
 }
 
@@ -20,11 +20,11 @@ $parser = new TraceParser($file);
 $parser->register($collector);
 $parser->parse();
 
-$report = $collector->report();
+$report = $collector->getReport();
 
 foreach ($report as $trace) {
-  print array_shift($trace) . PHP_EOL;
+  print array_shift($trace) . PHP_EOL . "\t";
   print implode(PHP_EOL . "\t", $trace);
-  print PHP_EOL;
+  print PHP_EOL . PHP_EOL;
 }
 ?>

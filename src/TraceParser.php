@@ -31,7 +31,7 @@ class TraceParser {
   /**
    * Register an observer.
    */
-  public function registerObserver(TraceParserObserver $observer) {
+  public function register(TraceParserObserver $observer) {
     $this->observers[] = $observer;
   }
   
@@ -66,9 +66,9 @@ class TraceParser {
             (int)$fields[4],
             $fields[5],
             $fields[6] == "0",
-            $fields[7],
+            $fields[8],
             (int)$fields[9],
-            $fields[8]
+            $fields[7]
           );
         }
         // EXIT function
@@ -86,11 +86,6 @@ class TraceParser {
     
     fclose($handle);
   }
-  
-  protected function fireEvent($event, $args) {
-    call_user_func_array(string function_name, array parameters)
-  }
-  
 }
 
 /**
@@ -102,8 +97,8 @@ interface TraceParserObserver {
   
   public function startEntry($timestamp);
   public function endEntry($timestamp);
-  public function enterFunction($function_id, $depth, $elapsed_time, $memory_consumption, $function_name, $is_internal, $filename, $line, $included_from = NULL);
-  public function exitFunction($function_id, $depth, $elapsed_time, $memory_consumption);
+  public function enterFunction($depth, $function_id, $elapsed_time, $memory_consumption, $function_name, $is_internal, $filename, $line, $included_from = NULL);
+  public function exitFunction($depth, $function_id, $elapsed_time, $memory_consumption);
   
 }
 
