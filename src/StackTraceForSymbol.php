@@ -35,11 +35,11 @@ class StackTraceForSymbol implements TraceParserObserver {
   public function enterFunction($depth, $function_id, $elapsed_time, $memory_consumption, $function_name, $is_internal, $filename, $line, $included_from = NULL) {
     
     if ($is_internal) {
-      $this->stack[$depth] = sprintf($this->internal_format, 
+      $this->stack[$depth] = $this->format_internal_function( 
         $depth, $function_name, $elapsed_time, $memory_consumption);
     }
     else {
-      $this->stack[$depth] = sprintf($this->user_format, 
+      $this->stack[$depth] = $this->format_user_function( 
         $depth, $function_name, $filename, $line, $elapsed_time, $memory_consumption);
     }
     
@@ -49,6 +49,16 @@ class StackTraceForSymbol implements TraceParserObserver {
       $this->traces[] = array_reverse($trace);
     }
     
+  }
+  
+  public function format_internal_function($depth, $function_name, $elapsed_time, $memory_consumption) {
+    return sprintf($this->internal_format, 
+      $depth, $function_name, $elapsed_time, $memory_consumption);
+  }
+  
+  public function format_user_function($depth, $function_name, $filename, $line, $elapsed_time, $memory_consumption) {
+    return sprintf($this->internal_format, 
+      $depth, $function_name, $elapsed_time, $memory_consumption);
   }
   
   public function exitFunction($depth, $function_id, $elapsed_time, $memory_consumption) {
