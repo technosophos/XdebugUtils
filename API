@@ -1,0 +1,8 @@
+This tool was written to make it easy to write trace analyzer tools.
+
+To write your own, implement a TraceParserObserver (or extend 
+one of the existing implementations) and then write a front-end.
+
+For a simple example, see:
+
+trace4func and StackTraceForSymbol.php
