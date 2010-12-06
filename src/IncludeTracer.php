@@ -10,7 +10,7 @@ class IncludeTracer implements TraceParserObserver {
   
   public function enterFunction($depth, $function_id, $elapsed_time, $memory_consumption, $function_name, $is_internal, $filename, $line, $included_from = NULL) {
     
-    if (!empty($included_from)) {
+    if (!empty($included_from) && $function_name != 'eval') {
       //print implode("\t", func_get_args()) . PHP_EOL;
       if ($this->silent) {
         print $included_from . PHP_EOL;

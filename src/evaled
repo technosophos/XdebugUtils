@@ -1,0 +1,50 @@
+#!/usr/bin/env php
+<?php
+require 'TraceParser.php';
+
+class EvalTracer implements TraceParserObserver {
+  protected $format = "%s [%s:%d] Time: %0.4f, Size: %d\n";
+  protected $counter = 0;
+  protected $silent = FALSE;
+  
+  public function __construct($silent) {
+    $this->silent = $silent;
+  }
+  
+  public function enterFunction($depth, $function_id, $elapsed_time, $memory_consumption, $function_name, $is_internal, $filename, $line, $included_from = NULL) {
+    
+    if (!empty($included_from) && $function_name == 'eval') {
+      printf($this->format, $function_name, $filename, $line, $elapsed_time, $memory_consumption);
+      print "\t" . $included_from . PHP_EOL;
+    }
+    
+  }
+  
+  public function startEntry($timestamp){}
+  public function endEntry($timestamp){}
+  public function exitFunction($depth, $function_id, $elapsed_time, $memory_consumption){}
+}
+
+if (count($argv) < 2) {
+  printf("Parses an XT file and prints an ordered list of evils... uh, evals, together
+with what file is responsible for this evil.
+
+\tUsage: %s file.xt
+\n", $argv[0]);
+ exit(1);
+}
+
+$silent = FALSE;
+if ($argv[1] == '-s') {
+  $silent = TRUE;
+  array_shift($argv);
+}
+
+$file = $argv[1];
+
+$collector = new EvalTracer($silent);
+
+$parser = new TraceParser($file);
+$parser->register($collector);
+$parser->parse();
+?>

@@ -2,19 +2,44 @@
 
 This provides a library and various  command-line utilities for working with Xdebug output.
 
+Scripts included:
+
+ - trace4func: Given a function name, give stack traces for all cases where the function was called.
+ - whatisincluded: Find all of the files that were included on a given run
+ - whocalls: Given a function, print info about the calling function. For example, find all functions that call `file_exists(_))`.
+
 ## Installation
 
-Instructions on how to install
+To collect data, you must have Xdebug installed, and you must be able to configure it to generate traces.
+
+To use these tools, you will need PHP 5.2 or later.
+
+To get started:
+
+1. Clone the Git repository
+2. Use any of the included command line tools.
 
 ## Usage
 
-The following commands are provided:
+1. You will need trace file to work with. Consult the Xdebug documentation. Make sure you set the trace output to generate machine-readable output.
+2. Run any of the provided scripts to analyze trace output.
 
- * `trace4func`: Analyze a trace file looking for all occurrences of some particular function, method, or other recognized symbol. Then print a report of stack traces for each instance of that function. This can be a useful tool for finding out under what conditions a function is being called.
+## Collecting Data with Xdebug
+
+Example `php.ini` config for Xdebug:
+
+    xdebug.auto_trace = 1
+    xdebug.trace_format = 1
+    xdebug.trace_output_name = php-trace.%t
+
+The second one is the most important: Set the tracing format to 1.
 
 ## More information
 
-The library is module (based on an Observer pattern). You can easily build your own utilities that can attach to the parser and run custom reports.
+You can easily extend this suite. See `API` (included here) to get started, or simply take a look at
+some of the tools in this package. Nothing is really that sophisticated.
 
 ----
 XdebugUtils by mbutcher (2010)
+
+Thanks to Derick Retham, whose scripts got me started.

@@ -3,7 +3,7 @@
 require 'TraceParser.php';
 require 'IncludeTracer.php';
 
-if (count($argv) < 3) {
+if (count($argv) < 2) {
   printf("Parses an XT file and prints an ordered list of all files that are included, together
 with what file includes them.
 
