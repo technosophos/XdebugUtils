@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+<?php
+require 'TraceParser.php';
+require 'IncludeTracer.php';
+
+if (count($argv) < 3) {
+  printf("Parses an XT file and prints an ordered list of all files that are included, together
+with what file includes them.
+
+\tUsage: %s file.xt
+\n", $argv[0]);
+ exit(1);
+}
+
+$silent = FALSE;
+if ($argv[1] == '-s') {
+  $silent = TRUE;
+  array_shift($argv);
+}
+
+$file = $argv[1];
+
+$collector = new IncludeTracer($silent);
+
+$parser = new TraceParser($file);
+$parser->register($collector);
+$parser->parse();
+
