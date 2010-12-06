@@ -28,7 +28,7 @@ if (empty($report)) {
 }
 
 foreach ($report as $trace) {
-  print $trace[1];
-  print PHP_EOL . PHP_EOL;
+  printf("%s (called %d time%s)", $trace['trace'], $trace['count'], $trace['count'] == 1 ? '':'s');
+  print PHP_EOL;
 }
 ?>
