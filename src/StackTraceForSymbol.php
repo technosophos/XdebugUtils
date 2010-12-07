@@ -16,8 +16,8 @@ class StackTraceForSymbol implements TraceParserObserver {
   
   protected $traces;
   
-  protected $user_format = '%d. %s [ %s:%d ] Time: %0.4f, Size: %d';
-  protected $internal_format = '%d. %s [ BUILT-IN ] Time: %0.4f, Size: %d';
+  protected $user_format = '%3d. %-60s [ %s:%d ] Time: %0.4f, Size: %d';
+  protected $internal_format = '%3d. %-60s [ BUILT-IN ] Time: %0.4f, Size: %d';
   
   public function __construct($symbol) {
     $this->watch_for_symbol = $symbol;
