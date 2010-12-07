@@ -28,7 +28,7 @@ if (empty($report)) {
 
 foreach ($report as $trace) {
   ++$counter;
-  print $counter;// . "\t" . array_shift($trace) . PHP_EOL . "\t";
+  print $counter . '. ';// . "\t" . array_shift($trace) . PHP_EOL . "\t";
   print implode(PHP_EOL . "\t", $trace);
   print PHP_EOL . PHP_EOL;
 }

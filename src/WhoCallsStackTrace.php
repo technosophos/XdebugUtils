@@ -20,7 +20,7 @@ class WhoCallsStackTrace extends StackTraceForSymbol {
     
     if ($function_name == $this->watch_for_symbol) {
       
-      $last = $this->stack[$depth -1];
+      $last = $this->stack[$depth - 1];
       $last_func = $last['name'];
       
       if (strlen($last['name']) > $this->longest) $this->longest = strlen($last['name']);
