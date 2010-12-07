@@ -27,11 +27,11 @@ if (empty($report)) {
   die("No symbols found");
 }
 
-print "Sorting\n";
 usort($report, array($collector, "countComparator"));
 
 foreach ($report as $trace) {
-  printf("%s (called %d time%s)", $trace['trace'], $trace['count'], $trace['count'] == 1 ? '':'s');
+  //printf("%s (called %d time%s)", $trace['trace'], $trace['count'], $trace['count'] == 1 ? '':'s');
+  printf("%d\t%{$collector->longest}s\t%s", $trace['count'], $trace['name'], $trace['file']);
   print PHP_EOL;
 }
 ?>
