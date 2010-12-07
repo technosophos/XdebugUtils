@@ -35,5 +35,9 @@ class WhoCallsStackTrace extends StackTraceForSymbol {
       }
     }
   }
+  
+  public function countComparator($a, $b) {
+    return $a['count'] > $b['count'] ? 1 : ($a['count'] > $b['count'] ? -1 : 0);
+  }
 }
 ?>

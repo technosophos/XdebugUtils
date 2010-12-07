@@ -27,6 +27,9 @@ if (empty($report)) {
   die("No symbols found");
 }
 
+print "Sorting\n";
+usort($report, array($collector, "countComparator"));
+
 foreach ($report as $trace) {
   printf("%s (called %d time%s)", $trace['trace'], $trace['count'], $trace['count'] == 1 ? '':'s');
   print PHP_EOL;
