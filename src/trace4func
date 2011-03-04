@@ -26,6 +26,7 @@ if (empty($report)) {
   die("No symbols found");
 }
 
+$counter = 0;
 foreach ($report as $trace) {
   ++$counter;
   print $counter . ".\t";// . "\t" . array_shift($trace) . PHP_EOL . "\t";

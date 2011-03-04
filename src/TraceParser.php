@@ -47,8 +47,8 @@ class TraceParser {
       // Get start/end messages
       $count = count($fields);
       if ($count == 2) {
-        $timestamp = $fields[2];
-        if (strpos('TRACE END') === 0) {
+        $timestamp = $fields[1];
+        if (strpos('TRACE END', $fields[0]) === 0) {
           foreach ($this->observers as $o) $o->endEntry($timestamp);
         }
         else {
