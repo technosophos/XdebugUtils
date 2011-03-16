@@ -47,4 +47,4 @@ some of the tools in this package. Nothing is really that sophisticated.
 ----
 XdebugUtils by mbutcher (2010)
 
-Thanks to Derick Retham, whose scripts got me started.
+Thanks to Derick Rethans, who [posted a simple PHP tool](http://derickrethans.nl/xdebug-and-tracing-memory-usage.html) for parsing Xdebug trace files.
