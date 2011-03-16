@@ -39,6 +39,11 @@ The second one is the most important: Set the tracing format to 1.
 You can easily extend this suite. See `API` (included here) to get started, or simply take a look at
 some of the tools in this package. Nothing is really that sophisticated.
 
+## Related Projects
+
+    - [ValaXdebugTools](https://github.com/technosophos/ValaXdebugTools) is a very fast trace analyzer.
+    - [xdebugtoolkit](http://code.google.com/p/xdebugtoolkit/) produces DOT files to make pretty diagrams of Xdebug trace files.
+
 ----
 XdebugUtils by mbutcher (2010)
 
