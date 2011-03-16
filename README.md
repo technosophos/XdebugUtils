@@ -41,8 +41,8 @@ some of the tools in this package. Nothing is really that sophisticated.
 
 ## Related Projects
 
-    - [ValaXdebugTools](https://github.com/technosophos/ValaXdebugTools) is a very fast trace analyzer.
-    - [xdebugtoolkit](http://code.google.com/p/xdebugtoolkit/) produces DOT files to make pretty diagrams of Xdebug trace files.
+  * [ValaXdebugTools](https://github.com/technosophos/ValaXdebugTools) is a very fast trace analyzer.
+  * [xdebugtoolkit](http://code.google.com/p/xdebugtoolkit/) produces DOT files to make pretty diagrams of Xdebug trace files.
 
 ----
 XdebugUtils by mbutcher (2010)
