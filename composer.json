@@ -1,0 +1,17 @@
+{
+  "name": "technosophos/XdebugUtils",
+  "description": "Tools for processing Xdebug output.",
+  "type": "library",
+  "keywords": ["debug", "Xdebug", "trace"],
+  "license": "MIT or GPLv2",
+  "homepage": "https://github.com/technosophos/XdebugUtils",
+  "authors": [
+    {
+      "name" : "M Butcher",
+      "homepage" : "http://technosophos.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.2.0"
+  }
+}
